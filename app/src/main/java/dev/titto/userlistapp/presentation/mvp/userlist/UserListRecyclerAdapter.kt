@@ -1,25 +1,20 @@
-package dev.titto.userlistapp.presentation.userlist
+package dev.titto.userlistapp.presentation.mvp.userlist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import dev.titto.userlistapp.data.remote.dto.UserDto
 import dev.titto.userlistapp.databinding.ItemUserListBinding
-import dev.titto.userlistapp.domain.model.User
 
 class UserListRecyclerAdapter(
-        val userList: List<User>,
-        private val onItemClickListener: (User) -> Unit
-) :
-        RecyclerView.Adapter<UserViewHolder>() {
+        val userList: List<UserDto>
+) : RecyclerView.Adapter<UserViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val binding =
                 ItemUserListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         val viewHolder = UserViewHolder(binding)
-        viewHolder.itemView.setOnClickListener {
-            onItemClickListener.invoke(userList[viewHolder.adapterPosition])
-        }
         return viewHolder
     }
 
@@ -33,7 +28,7 @@ class UserListRecyclerAdapter(
 
 class UserViewHolder(private val binding: ItemUserListBinding) :
         RecyclerView.ViewHolder(binding.root) {
-    fun bind(user: User) {
+    fun bind(user: UserDto) {
         binding.apply {
             textviewUserName.text = "${user.firstName} ${user.lastName}"
             Glide.with(itemView)

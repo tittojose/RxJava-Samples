@@ -8,9 +8,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class UserRepositoryImpl @Inject constructor(
+class UserRepositoryImpl constructor(
         private val api: UserApi
 ) : UserRepository {
-    override suspend fun getUserList() = api.getUserList()
-    override suspend fun getUserDetail(userId: String): UserDetailDto = api.getUserDetail(userId)
+    override fun getUserList() = api.getUserList()
 }

@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UserList">
         <activity
-            android:name="dev.titto.userlistapp.presentation.MainActivity"
+            android:name=".presentation.mvp.userlist.UserListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
