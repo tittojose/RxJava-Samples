@@ -23,7 +23,7 @@ class UserListActivity : AppCompatActivity(), UserListView {
 
         val repo = UserRepositoryImpl(APIHelper.getAPIService())
 
-        presenter = UserListPresenter(view = this, repo)
+        presenter = UserListPresenter(view = this, repo, ScheduleProviderImpl())
 
         presenter.fetchUsers()
     }

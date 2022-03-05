@@ -1,21 +1,20 @@
 package dev.titto.userlistapp.presentation.mvp.userlist
 
 import dev.titto.userlistapp.domain.repository.UserRepository
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
-import io.reactivex.schedulers.Schedulers
 
 class UserListPresenter constructor(
     val view: UserListView,
-    val repo: UserRepository
+    val repo: UserRepository,
+    private val schedulers: ScheduleProvider
 ) {
     private val disposable = CompositeDisposable()
 
     fun fetchUsers() {
         repo.getUserList()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(schedulers.io())
+            .observeOn(schedulers.main())
             .subscribe({
                 view.showUserList(it.userList)
             }, {
