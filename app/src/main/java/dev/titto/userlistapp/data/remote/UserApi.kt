@@ -1,6 +1,7 @@
 package dev.titto.userlistapp.data.remote
 
 import dev.titto.userlistapp.data.remote.dto.UserListDto
+import io.reactivex.Observable
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Headers
